@@ -1,0 +1,10 @@
+<div id="search-bar">
+  <input
+    placeholder="search ..."
+    [ngModel]="search"
+    (ngModelChange)="updateSearch($event)"
+  />
+  <button (click)="searchClick()">
+    <img src="assets/img/looop.png" alt="loop-img" />
+  </button>
+</div>
