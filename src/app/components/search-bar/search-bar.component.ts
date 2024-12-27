@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  model,
+  output,
+  Output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,18 +16,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search-bar.component.css',
 })
 export class SearchBarComponent {
-  @Input() search = 'inital';
+  search = model<string>('inital');
 
-  @Output() searchChange = new EventEmitter<string>();
-
-  @Output('submit') searchButtonClicked = new EventEmitter();
+  searchButtonClicked = output();
 
   searchClick() {
     console.log('clicked');
     this.searchButtonClicked.emit();
-  }
-
-  updateSearch(value: string) {
-    this.searchChange.emit(value);
   }
 }
