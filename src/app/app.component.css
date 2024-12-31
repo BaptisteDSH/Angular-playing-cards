@@ -10,3 +10,9 @@ h1 {
   align-items: center;
   gap: 20px;
 }
+
+.center {
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
