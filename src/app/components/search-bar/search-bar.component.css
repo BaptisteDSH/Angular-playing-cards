@@ -32,8 +32,3 @@ button img {
 button:hover {
   background-color: rgb(179, 179, 255);
 }
-
-.center {
-  text-align: center;
-  margin-top: 40px;
-}
