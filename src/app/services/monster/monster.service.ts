@@ -7,7 +7,7 @@ import { MonsterType } from '../../utils/monster.utils';
 })
 export class MonsterService {
   monsters: Monster[] = [];
-  currentIndex: number = 1;
+  currentIndex: number = 5;
 
   constructor() {
     this.load();
@@ -45,10 +45,9 @@ export class MonsterService {
 
     if (monsterIndex) {
       this.monsters[monsterIndex] = monsterCopy.copy();
+      this.save();
     }
     return monsterCopy;
-
-    this.save();
   }
 
   delete(id: number): void {
@@ -63,7 +62,7 @@ export class MonsterService {
   }
 
   private save() {
-    localStorage.setItem('monsters', JSON.stringify(this.monsters));
+    localStorage.setItem('monster', JSON.stringify(this.monsters));
   }
   private load() {
     const monsterData = localStorage.getItem('monsters');
@@ -84,6 +83,7 @@ export class MonsterService {
     this.monsters = [];
 
     const monster1 = new Monster();
+    monster1.id = 1;
     monster1.name = 'Pik';
     monster1.image = 'assets/img/monster.png';
     monster1.type = MonsterType.DARK;
@@ -95,6 +95,7 @@ export class MonsterService {
     this.monsters.push(monster1);
 
     const monster2 = new Monster();
+    monster2.id = 2;
     monster2.name = 'Juk';
     monster2.image = 'assets/img/monster2.jpg';
     monster2.type = MonsterType.FIRE;
@@ -106,6 +107,7 @@ export class MonsterService {
     this.monsters.push(monster2);
 
     const monster3 = new Monster();
+    monster3.id = 3;
     monster3.name = 'tiplouf';
     monster3.image = 'assets/img/monster3.jpg';
     monster3.type = MonsterType.WATER;
@@ -117,6 +119,7 @@ export class MonsterService {
     this.monsters.push(monster3);
 
     const monster4 = new Monster();
+    monster4.id = 4;
     monster4.name = 'Bulby';
     monster4.image = 'assets/img/monster4.png ';
     monster4.type = MonsterType.PLANT;
