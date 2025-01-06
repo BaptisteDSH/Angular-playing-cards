@@ -3,5 +3,14 @@ body,
 html {
   font-family: Roboto, sans-serif;
   height: 100%;
-  background: linear-gradient(45deg, rgb(28, 3, 154), rgb(218, 228, 255));
+  background: linear-gradient(45deg, rgb(69, 42, 205), rgb(218, 228, 255));
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
