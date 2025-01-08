@@ -22,28 +22,12 @@ export class MonsterService {
     return monster ? monster.copy() : undefined;
   }
 
-  add(monster: Monster): Monster {
-    const monsterCopy = monster.copy();
-
-    monsterCopy.id = this.currentIndex;
-
-    this.monsters.push(monsterCopy.copy());
-
-    this.currentIndex++;
-
-    this.save();
-
-    return monsterCopy;
-  }
-
   update(monster: Monster): Monster {
     const monsterCopy = monster.copy();
 
-    const monsterIndex = this.monsters.findIndex(
-      (monster) => monster.id === monster.id
-    );
+    const monsterIndex = this.monsters.findIndex((m) => m.id === monster.id);
 
-    if (monsterIndex) {
+    if (monsterIndex !== -1) {
       this.monsters[monsterIndex] = monsterCopy.copy();
       this.save();
     }
@@ -64,21 +48,33 @@ export class MonsterService {
   private save() {
     localStorage.setItem('monster', JSON.stringify(this.monsters));
   }
+
+  add(monster: Monster): Monster {
+    const monsterCopy = monster.copy();
+
+    monsterCopy.id = this.currentIndex;
+    this.currentIndex++;
+
+    this.monsters.push(monsterCopy);
+
+    this.save();
+
+    return monsterCopy;
+  }
+
   private load() {
-    const monsterData = localStorage.getItem('monsters');
+    const monsterData = localStorage.getItem('monster');
     if (monsterData) {
       this.monsters = JSON.parse(monsterData).map((monsterJSON: any) =>
         Object.assign(new Monster(), monsterJSON)
       );
-      this.currentIndex = Math.max(
-        ...this.monsters.map((monster) => monster.id)
-      );
+      this.currentIndex =
+        Math.max(...this.monsters.map((monster) => monster.id)) + 1;
     } else {
       this.init();
       this.save();
     }
   }
-
   private init() {
     this.monsters = [];
 

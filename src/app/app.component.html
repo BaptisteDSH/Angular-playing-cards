@@ -1,1 +1,13 @@
+@if ((LoginService.user())) {
+<mat-toolbar>
+  <button mat-icon-button (click)="navigateHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <p>
+    Welcome {{ LoginService.user()?.firstName }}
+    {{ LoginService.user()?.lastName }}
+  </p>
+  <button mat-flat-button color="'warn" (click)="logout()">Logout</button>
+</mat-toolbar>
+}
 <router-outlet></router-outlet>
